@@ -1,0 +1,26 @@
+services:
+  redis:
+    image: redis:7.2
+    ports:
+      - "6379:6379"
+    volumes:
+      - "redis:/data"
+      - "./apps/backend/src/config/redis.conf:/usr/local/etc/redis/redis.conf"
+    command: redis-server /usr/local/etc/redis/redis.conf
+
+  db:
+    image: postgres:16.2
+    shm_size: 128mb
+    ports:
+      - "5432:5432"
+    volumes:
+      - "postgres:/var/lib/postgresql/data"
+    env_file: "./apps/backend/.env"
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASS=${DB_PASS}
+      - POSTGRES_DB_NAME=${DB_NAME}
+
+volumes:
+  redis:
+  postgres:

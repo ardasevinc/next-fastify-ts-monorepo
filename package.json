@@ -1,0 +1,26 @@
+{
+  "name": "next-fastify-ts-monorepo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=9"
+  },
+  "scripts": {
+    "dev:frontend": "pnpm --filter ./apps/web dev",
+    "dev:backend": "pnpm --filter ./apps/backend dev",
+    "dev": "concurrently -n frontend,backend 'pnpm run dev:frontend' 'pnpm run dev:backend'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "prettier": "@ardasevinc/prettier-config",
+  "devDependencies": {
+    "@ardasevinc/prettier-config": "^0.1.4"
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
